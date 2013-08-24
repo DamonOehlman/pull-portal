@@ -38,24 +38,29 @@ Send a chunk of bytes to the portal (`p`).
 
 ```js
 var skyportal = require('skyportal');
+var commands = require('skyportal/commands');
 var portal = require('pull-portal');
 var pull = require('pull-stream');
 
 // open the portal (may require admin privileges)
 skyportal.open(skyportal.find(), function(err, p) {
 
-  // read a stream of status updates from the portal
   pull(
+    // generate random rgb colors
     pull.infinite(function() {
       var r = (Math.random() * 255) | 0;
       var g = (Math.random() * 255) | 0;
       var b = (Math.random() * 255) | 0;
 
-      return [0x43, r, g, b];
+      return [r, g, b];
     }),
 
-    // throttle updates
+    // convert to a color command
+    pull.map(commands.color),
+
+    // throttle updates to prevent your eyes hurting
     pull.asyncMap(function(data, cb) {
+      console.log(data);
       setTimeout(function() {
         cb(null, data);
       }, 100);

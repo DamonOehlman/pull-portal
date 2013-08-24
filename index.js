@@ -6,10 +6,6 @@ var skyportal = require('skyportal');
 
   Pull streams for [skyportal](https://github.com/DamonOehlman/skyportal).
 
-  ## Example Usage
-
-  <<< examples/stream-status.js
-
   ## Reference
 **/
 
@@ -17,6 +13,8 @@ var skyportal = require('skyportal');
   ### status(p)
 
   Read a stream of data from an open portal (`p`).
+
+  <<< examples/stream-status.js
 
 **/
 exports.status = pull.Source(function(p) {
@@ -34,6 +32,8 @@ exports.status = pull.Source(function(p) {
 
   Send a chunk of bytes to the portal (`p`).
 
+  <<< examples/color-randomizer.js
+  
 **/ 
 exports.send = pull.Sink(function(read, p) {
   read(null, function next(end, data) {

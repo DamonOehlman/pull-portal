@@ -7,7 +7,11 @@ Pull streams for [skyportal](https://github.com/DamonOehlman/skyportal).
 
 [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
 
-## Example Usage
+## Reference
+
+### status(p)
+
+Read a stream of data from an open portal (`p`).
 
 ```js
 var skyportal = require('skyportal');
@@ -28,11 +32,43 @@ skyportal.open(skyportal.find(), function(err, p) {
 
 ```
 
-## Reference
+### send(p)
 
-### source(portal)
+Send a chunk of bytes to the portal (`p`).
 
-Read a stream of data from an open portal.
+```js
+var skyportal = require('skyportal');
+var portal = require('pull-portal');
+var pull = require('pull-stream');
+
+// open the portal (may require admin privileges)
+skyportal.open(skyportal.find(), function(err, p) {
+
+  // read a stream of status updates from the portal
+  pull(
+    pull.infinite(function() {
+      var r = (Math.random() * 255) | 0;
+      var g = (Math.random() * 255) | 0;
+      var b = (Math.random() * 255) | 0;
+
+      return [0x43, r, g, b];
+    }),
+
+    // throttle updates
+    pull.asyncMap(function(data, cb) {
+      setTimeout(function() {
+        cb(null, data);
+      }, 100);
+    }),
+
+    // send the data
+    portal.send(p)
+  );
+
+});
+
+
+```
 
 ## License(s)
 

@@ -4,7 +4,8 @@ var skyportal = require('skyportal');
 /**
   # pull-portal
 
-  Pull streams for [skyportal](https://github.com/DamonOehlman/skyportal).
+  [Pull streams](https://github.com/dominictarr/pull-stream) for
+  [skyportal](https://github.com/DamonOehlman/skyportal).
 
   ## Reference
 **/
@@ -33,7 +34,7 @@ exports.status = pull.Source(function(p) {
   Send a chunk of bytes to the portal (`p`).
 
   <<< examples/color-randomizer.js
-  
+
 **/ 
 exports.send = pull.Sink(function(read, p) {
   read(null, function next(end, data) {

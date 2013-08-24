@@ -1,6 +1,7 @@
 # pull-portal
 
-Pull streams for [skyportal](https://github.com/DamonOehlman/skyportal).
+[Pull streams](https://github.com/dominictarr/pull-stream) for
+[skyportal](https://github.com/DamonOehlman/skyportal).
 
 
 [![NPM](https://nodei.co/npm/pull-portal.png)](https://nodei.co/npm/pull-portal/)

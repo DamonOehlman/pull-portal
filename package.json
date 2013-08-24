@@ -1,6 +1,6 @@
 {
   "name": "pull-portal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Pull streams for the skyportal",
   "main": "index.js",
   "scripts": {

@@ -21,7 +21,6 @@ skyportal.open(skyportal.find(), function(err, p) {
 
     // throttle updates to prevent your eyes hurting
     pull.asyncMap(function(data, cb) {
-      console.log(data);
       setTimeout(function() {
         cb(null, data);
       }, 100);

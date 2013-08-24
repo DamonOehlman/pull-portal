@@ -1,15 +1,15 @@
 var skyportal = require('skyportal');
-var pullportal = require('../');
+var portal = require('../');
 var pull = require('pull-stream');
 
 // open the portal (may require admin privileges)
-skyportal.open(skyportal.find(), function(err, portal) {
+skyportal.open(skyportal.find(), function(err, p) {
 
   // read a stream of status updates from the portal
   pull(
-    pullportal.status(portal),
+    portal.status(p),
     pull.drain(console.log)
   );
-  
+
 });
 

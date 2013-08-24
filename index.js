@@ -11,18 +11,46 @@ var skyportal = require('skyportal');
   <<< examples/stream-status.js
 
   ## Reference
+**/
 
-  ### source(portal)
+/**
+  ### status(p)
 
-  Read a stream of data from an open portal.
+  Read a stream of data from an open portal (`p`).
 
 **/
-exports.status = pull.Source(function(portal) {
+exports.status = pull.Source(function(p) {
   return function(end, cb) {
     if (end) {
       return cb && cb(end);
     }
 
-    skyportal.read(portal, cb);
+    skyportal.read(p, cb);
   };
+});
+
+/**
+  ### send(p)
+
+  Send a chunk of bytes to the portal (`p`).
+
+**/ 
+exports.send = pull.Sink(function(read, p) {
+  read(null, function next(end, data) {
+    // if the stream has ended, simply return
+    if (end) {
+      return;
+    }
+
+    // ensure we have an array of bytes to work with
+    skyportal.send([].concat(data), p, function(err) {
+      // if we've hit an error tell the reader we are ending
+      if (err) {
+        return read(err);
+      }
+
+      // otherwise, read the next chunk
+      read(null, next);
+    });
+  });
 });

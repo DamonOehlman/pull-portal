@@ -1,0 +1,30 @@
+{
+  "name": "pull-portal",
+  "version": "0.0.0",
+  "description": "Pull streams for the skyportal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/pull-portal.git"
+  },
+  "keywords": [
+    "rfid",
+    "usb",
+    "skyportal"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/pull-portal/issues"
+  },
+  "dependencies": {
+    "pull-core": "~1.0.0",
+    "skyportal": "~0.2.2"
+  },
+  "devDependencies": {
+    "pull-stream": "~2.20.1"
+  }
+}

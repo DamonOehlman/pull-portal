@@ -4,12 +4,14 @@ var pull = require('pull-stream');
 
 // open the portal (may require admin privileges)
 skyportal.open(skyportal.find(), function(err, p) {
+  if (err) {
+    return console.log('could not open portal :(');
+  }
 
   // read a stream of status updates from the portal
   pull(
     portal.status(p),
     pull.drain(console.log)
   );
-
 });
 

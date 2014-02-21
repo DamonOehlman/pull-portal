@@ -26,6 +26,6 @@
     "skyportal": "~0.2.2"
   },
   "devDependencies": {
-    "pull-stream": "~2.20.1"
+    "pull-stream": "~2.21.0"
   }
 }

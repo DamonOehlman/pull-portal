@@ -10,7 +10,7 @@
 
 ## Reference
 
-### status(p)
+### read(p)
 
 Read a stream of data from an open portal (`p`).
 
@@ -27,7 +27,7 @@ skyportal.open(skyportal.find(), function(err, p) {
 
   // read a stream of status updates from the portal
   pull(
-    portal.status(p),
+    portal.reader(p),
     pull.drain(console.log)
   );
 });
@@ -35,7 +35,7 @@ skyportal.open(skyportal.find(), function(err, p) {
 
 ```
 
-### send(p)
+### write(p)
 
 Send a chunk of bytes to the portal (`p`).
 
@@ -72,7 +72,7 @@ skyportal.open(skyportal.find(), function(err, p) {
     }),
 
     // send the data
-    portal.send(p)
+    portal.writer(p)
   );
 });
 

@@ -10,9 +10,10 @@
 
 ## Reference
 
-### read(p)
+### reader(p)
 
-Read a stream of data from an open portal (`p`).
+A [pull-stream Source](https://npmdox.appspot.com/pull-stream/sources) that
+will read data from portal `p`
 
 ```js
 var skyportal = require('skyportal');
@@ -35,9 +36,10 @@ skyportal.open(skyportal.find(), function(err, p) {
 
 ```
 
-### write(p)
+### writer(p)
 
-Send a chunk of bytes to the portal (`p`).
+A [pull-stream Sink](https://npmdox.appspot.com/pull-stream/sinks) that
+will send data to portal `p`
 
 ```js
 var skyportal = require('skyportal');

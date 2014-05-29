@@ -2,9 +2,10 @@ var pull = require('pull-core');
 var skyportal = require('skyportal');
 
 /**
-  ### write(p)
+  ### writer(p)
 
-  Send a chunk of bytes to the portal (`p`).
+  A [pull-stream Sink](https://npmdox.appspot.com/pull-stream/sinks) that
+  will send data to portal `p`
 
   <<< examples/color-randomizer.js
 

@@ -2,9 +2,10 @@ var skyportal = require('skyportal');
 var pull = require('pull-core');
 
 /**
-  ### read(p)
+  ### reader(p)
 
-  Read a stream of data from an open portal (`p`).
+  A [pull-stream Source](https://npmdox.appspot.com/pull-stream/sources) that
+  will read data from portal `p`
 
   <<< examples/stream-status.js
 

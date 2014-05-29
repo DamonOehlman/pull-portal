@@ -30,7 +30,7 @@ skyportal.open(skyportal.find(), function(err, p) {
     }),
 
     // send the data
-    portal.send(p)
+    portal.writer(p)
   );
 });
 

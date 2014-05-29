@@ -10,7 +10,7 @@ skyportal.open(skyportal.find(), function(err, p) {
 
   // read a stream of status updates from the portal
   pull(
-    portal.status(p),
+    portal.reader(p),
     pull.drain(console.log)
   );
 });

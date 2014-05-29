@@ -6,7 +6,7 @@
 
 [![NPM](https://nodei.co/npm/pull-portal.png)](https://nodei.co/npm/pull-portal/)
 
-[![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+[![experimental](https://img.shields.io/badge/stability-experimental-red.svg)](https://github.com/badges/stability-badges) 
 
 ## Reference
 
@@ -83,7 +83,7 @@ skyportal.open(skyportal.find(), function(err, p) {
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

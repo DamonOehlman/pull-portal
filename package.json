@@ -7,10 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gendocs": "gendocs > README.md"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/DamonOehlman/pull-portal.git"
-  },
   "keywords": [
     "rfid",
     "usb",
@@ -18,14 +14,22 @@
   ],
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://bitbucket.org/DamonOehlman/pull-portal/issues"
-  },
   "dependencies": {
     "pull-core": "~1.0.0",
     "skyportal": "~0.2.2"
   },
   "devDependencies": {
     "pull-stream": "~2.21.0"
-  }
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/pull-portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/pull-portal/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/pull-portal"
 }

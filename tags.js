@@ -11,7 +11,7 @@ module.exports = function() {
     while (tagStat > 0) {
       newState[tagIdx] = ((tagStat & 1) == 1);
       if (currentState && newState[tagIdx] != currentState[tagIdx]) {
-        tag.emit('tag:change', tagIdx, newState[tagIdx] == 1);
+        tags.emit('tag:change', tagIdx, newState[tagIdx] == 1);
       }
 
       tagStat = tagStat >> 2;
@@ -19,7 +19,7 @@ module.exports = function() {
     }
 
     while (newState.length < 12) {
-      newState.push(0);
+      newState.push(false);
     }
 
     return newState;

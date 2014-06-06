@@ -9,9 +9,9 @@ module.exports = function() {
     var tagIdx = 0;
 
     while (tagStat > 0) {
-      newState[tagIdx] = tagStat & 1 == 1;
+      newState[tagIdx] = ((tagStat & 1) == 1);
       if (currentState && newState[tagIdx] != currentState[tagIdx]) {
-        console.log('tag ' + tagIdx + ' changed');
+        tag.emit('tag:change', tagIdx, newState[tagIdx] == 1);
       }
 
       tagStat = tagStat >> 2;

@@ -11,14 +11,11 @@ var skyportal = require('skyportal');
 
 **/
 module.exports = pull.Sink(function(read, p) {
-  read(null, function next(end, data) {
-    // if the stream has ended, simply return
-    if (end) {
-      return;
-    }
+  var portal;
 
+  function send(data) {
     // ensure we have an array of bytes to work with
-    skyportal.send([].concat(data), p, function(err) {
+    skyportal.send([].concat(data), portal, function(err) {
       // if we've hit an error tell the reader we are ending
       if (err) {
         return read(err);
@@ -27,5 +24,27 @@ module.exports = pull.Sink(function(read, p) {
       // otherwise, read the next chunk
       read(null, next);
     });
-  });
+  }
+
+  function next(end, data) {
+    // if the stream has ended, simply return
+    if (end) {
+      return;
+    }
+
+    if (portal) {
+      return send(data);
+    }
+
+    skyportal.open(skyportal.find(), function(err, p) {
+      if (err) {
+        return read(err);
+      }
+
+      portal = p;
+      send(data);
+    });
+  }
+
+  read(null, next);
 });

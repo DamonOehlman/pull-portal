@@ -11,11 +11,23 @@ var pull = require('pull-core');
 
 **/
 module.exports = pull.Source(function(p) {
+  var portal;
+
   return function(end, cb) {
     if (end) {
       return cb && cb(end);
     }
 
-    skyportal.read(p, cb);
+    if (portal) {
+      return skyportal.read(portal, cb);
+    }
+
+    skyportal.open(skyportal.find(), function(err, p) {
+      if (err) {
+        return cb(err);
+      }
+
+      skyportal.read(portal = p, cb);
+    });
   };
 });

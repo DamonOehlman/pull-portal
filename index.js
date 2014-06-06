@@ -9,6 +9,7 @@
 
 exports.reader = require('./reader');
 exports.writer = require('./writer');
+exports.tags = require('./tags');
 
 // expose the portal commands
 exports.commands = require('skyportal/commands');

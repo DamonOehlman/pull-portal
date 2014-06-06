@@ -22,12 +22,12 @@ module.exports = pull.Source(function(p) {
       return skyportal.read(portal, cb);
     }
 
-    skyportal.open(skyportal.find(), function(err, p) {
+    portal = skyportal.init(function(err) {
       if (err) {
         return cb(err);
       }
 
-      skyportal.read(portal = p, cb);
+      skyportal.read(portal, cb);
     });
   };
 });

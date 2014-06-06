@@ -36,12 +36,11 @@ module.exports = pull.Sink(function(read, p) {
       return send(data);
     }
 
-    skyportal.open(skyportal.find(), function(err, p) {
+    portal = skyportal.init(function(err) {
       if (err) {
         return read(err);
       }
 
-      portal = p;
       send(data);
     });
   }

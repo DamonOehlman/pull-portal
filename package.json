@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "pull-core": "^1",
-    "skyportal": "~0.2"
+    "skyportal": "~0.3"
   },
   "devDependencies": {
     "pull-stream": "^2"

@@ -2,15 +2,14 @@ var skyportal = require('skyportal');
 var pull = require('pull-core');
 
 /**
-  ### reader(p)
+  ### reader(opts?)
 
-  A [pull-stream Source](https://npmdox.appspot.com/pull-stream/sources) that
-  will read data from portal `p`
+  A pull-stream `Source` that will read data from the portal.
 
   <<< examples/stream-status.js
 
 **/
-module.exports = pull.Source(function(p) {
+module.exports = pull.Source(function(opts) {
   var portal;
 
   return function(end, cb) {
@@ -22,7 +21,7 @@ module.exports = pull.Source(function(p) {
       return skyportal.read(portal, cb);
     }
 
-    portal = skyportal.init(function(err) {
+    portal = skyportal.init(opts, function(err) {
       if (err) {
         return cb(err);
       }

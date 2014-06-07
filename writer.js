@@ -2,15 +2,14 @@ var pull = require('pull-core');
 var skyportal = require('skyportal');
 
 /**
-  ### writer(p)
+  ### writer(opts?)
 
-  A [pull-stream Sink](https://npmdox.appspot.com/pull-stream/sinks) that
-  will send data to portal `p`
+  A pull-stream `Sink` that will send data to the portal.
 
   <<< examples/color-randomizer.js
 
 **/
-module.exports = pull.Sink(function(read, p) {
+module.exports = pull.Sink(function(read, opts) {
   var portal;
 
   function send(data) {
@@ -36,7 +35,7 @@ module.exports = pull.Sink(function(read, p) {
       return send(data);
     }
 
-    portal = skyportal.init(function(err) {
+    portal = skyportal.init(opts, function(err) {
       if (err) {
         return read(err);
       }

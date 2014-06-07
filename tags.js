@@ -1,6 +1,25 @@
 var EventEmitter = require('events').EventEmitter;
 var pull = require('pull-core');
 
+/**
+  ### tags()
+
+  Create a tag state monitor for the portal. This is the module in the
+  `pull-portal` package that does most of the legwork for determining
+  how to read data from a tag and monitor when a tag is in range of the
+  reader.
+
+  It is implemented as a pull-stream `Through` stream which performs a
+  transformation on incoming data that has been read from the portal
+  and generates data that should be written to the data.
+
+  At present it should be used in conjunction with a `pull.filter()`
+  through stream to prevent attempting to write empty data to the
+  portal.
+
+  <<< examples/data-reader.js
+
+**/
 module.exports = function() {
   var tags = new EventEmitter();
   var knownTags = [];

@@ -9,7 +9,8 @@ var pull = require('pull-core');
   how to read data from a tag and monitor when a tag is in range of the
   reader.
 
-  It is implemented as a pull-stream `Through` stream which performs a
+  By calling the `.monitor()` function of the created tags `EventEmitter`
+  you can create a pull-stream `Through` stream which performs a
   transformation on incoming data that has been read from the portal
   and generates data that should be written to the data.
 

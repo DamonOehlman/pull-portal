@@ -10,10 +10,9 @@
 
 ## Reference
 
-### reader(p)
+### reader(opts?)
 
-A [pull-stream Source](https://npmdox.appspot.com/pull-stream/sources) that
-will read data from portal `p`
+A pull-stream `Source` that will read data from the portal.
 
 ```js
 var portal = require('pull-portal');
@@ -21,16 +20,54 @@ var pull = require('pull-stream');
 
 // read a stream of status updates from the portal
 pull(
-  portal.read(),
+  portal.reader(),
   pull.drain(console.log)
 );
 
 ```
 
-### writer(p)
+### tags()
 
-A [pull-stream Sink](https://npmdox.appspot.com/pull-stream/sinks) that
-will send data to portal `p`
+Create a tag state monitor for the portal. This is the module in the
+`pull-portal` package that does most of the legwork for determining
+how to read data from a tag and monitor when a tag is in range of the
+reader.
+
+By calling the `.monitor()` function of the created tags `EventEmitter`
+you can create a pull-stream `Through` stream which performs a
+transformation on incoming data that has been read from the portal
+and generates data that should be written to the data.
+
+At present it should be used in conjunction with a `pull.filter()`
+through stream to prevent attempting to write empty data to the
+portal.
+
+```js
+var portal = require('pull-portal');
+var pull = require('pull-stream');
+var tags = portal.tags();
+
+// read a stream of status updates from the portal
+pull(
+  portal.reader(),
+  tags.monitor(),
+  pull.filter(),
+  pull.map(function(data) {
+    console.log('sending data: ', data);
+    return data;
+  }),
+  portal.writer()
+);
+
+tags.on('tag:change', function(idx, active) {
+  console.log('tag ' + idx + ' changed, active = ' + active);
+});
+
+```
+
+### writer(opts?)
+
+A pull-stream `Sink` that will send data to the portal.
 
 ```js
 var portal = require('pull-portal');
